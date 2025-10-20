@@ -9,9 +9,41 @@
 
 <body>
     <h1>Catalogo de Películas y Series</h1>
-	
-    <script src="index.js"></script>
+	<button class="AñadirBoton">Añadir Pelicula</button>
     
+    
+    <section id="seccion" hidden>
+    <h2>Nueva película</h2>
+        <form id="pelicula">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required>
+
+        <label for="año">Año:</label>
+        <input type="numero" id="año" name="año" min="1900" max="2100">
+
+        <label for="poster">URL del póster:</label>
+        <input type="url" id="poster" name="poster" placeholder="https://...">
+
+        <label for="synopsis">Sinopsis:</label>
+        <textarea id="synopsis" name="synopsis" rows="3"></textarea>
+
+        <button type="guardar">Guardar</button>
+        <button type="botonGuardar" id="cancelar">Cancelar</button>
+        </form>
+    </section>
+
+    <!-- Sección donde se mostrarán las películas -->
+    <section id="ListaPeliculas">
+        <h2>Películas añadidas</h2>
+        <ul id="peliculas"></ul>
+    </section>
+
+    
+
+  <script src="index.js"></script>
+
 </body>
 
 </html>
+
+
