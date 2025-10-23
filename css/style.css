@@ -4,6 +4,18 @@
 /* 0. VARIABLES Y RESET BÁSICO */
 /* ---------------------------------------------------- */
 
+:root {
+    --color-primary: #e50914;
+    --color-secondary: #564d4d;
+    --color-background: #1a1a1a;
+    --color-card-bg: #2a2a2a;
+    --color-text-light: #ffffff;
+    --color-text-muted: #999999;
+    --spacing-unit: 20px;
+    --border-radius: 10px;
+    --transition-speed: 0.3s;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -38,19 +50,56 @@ button {
     margin: 0.5rem 0.25rem;
 }
 
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(229, 9, 20, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(229, 9, 20, 0);
+    }
+}
+
 /* Botón principal (Añadir Película) */
 .AñadirBoton, button[type="guardar"] {
-    background-color: var(--color-primary);
+    background: linear-gradient(45deg, var(--color-primary), #ff4b2b);
     color: var(--color-text-light);
-    display: block; /* Para centrar y ocupar ancho */
+    display: block;
     width: 100%;
     max-width: 300px;
     margin: 1.5rem auto;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed) ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.AñadirBoton::before, button[type="guardar"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
 }
 
 .AñadirBoton:hover, button[type="guardar"]:hover {
-    background-color: #f40612; /* Rojo más intenso */
-    transform: translateY(-1px);
+    transform: translateY(-3px) scale(1.02);
+    animation: pulseGlow 1.5s infinite;
+}
+
+.AñadirBoton:hover::before, button[type="guardar"]:hover::before {
+    transform: translateX(100%);
 }
 
 /* Botón secundario (Cancelar/Otros) */
@@ -94,20 +143,29 @@ button {
 #pelicula input[type="number"],
 #pelicula input[type="url"],
 #pelicula textarea {
-    padding: 0.8rem;
-    border: 1px solid #333;
-    border-radius: 4px;
-    background-color: #2a2a2a;
+    padding: 1rem;
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    background-color: rgba(255, 255, 255, 0.1);
     color: var(--color-text-light);
     width: 100%;
     font-size: 1rem;
-    transition: border-color 0.2s ease;
+    transition: all var(--transition-speed) ease;
+    backdrop-filter: blur(5px);
 }
 
-#pelicula input:focus, #pelicula textarea:focus {
+#pelicula input::placeholder,
+#pelicula textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#pelicula input:focus,
+#pelicula textarea:focus {
     border-color: var(--color-primary);
     outline: none;
-    box-shadow: 0 0 5px rgba(229, 9, 20, 0.5);
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
+    transform: translateY(-2px);
 }
 
 #pelicula textarea {
@@ -134,19 +192,36 @@ button {
 }
 
 /* Estilos de cada elemento de la lista (Tarjeta de Película) */
-.pelicula-item { /* Asumiendo que JS crea un <li> con esta clase */
+.pelicula-item {
     background-color: var(--color-card-bg);
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    transition: all var(--transition-speed) ease;
+    position: relative;
 }
 
 .pelicula-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.9);
+}
+
+.pelicula-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), #ff4b2b);
+    transform: scaleX(0);
+    transition: transform var(--transition-speed) ease;
+}
+
+.pelicula-item:hover::before {
+    transform: scaleX(1);
 }
 
 .pelicula-content {
