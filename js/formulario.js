@@ -1,15 +1,12 @@
 import { guardarEnLocalStorage, cargarDeLocalStorage } from './storage.js';
 
-// Estado global del catálogo
 let catalogoPeliculas = cargarDeLocalStorage();
 
-// Elementos del DOM
 const botonAñadir = document.querySelector(".AñadirBoton");
 const seccionFormulario = document.querySelector("#seccion");
 const formulario = document.querySelector("#pelicula");
 const botonCancelar = document.querySelector("#cancelar");
 
-// Mostrar/Ocultar formulario
 botonAñadir.addEventListener("click", () => {
     seccionFormulario.hidden = false;
     limpiarFormulario();
@@ -21,13 +18,11 @@ botonCancelar.addEventListener("click", (e) => {
     seccionFormulario.hidden = true;
 });
 
-// Manejar el envío del formulario
 formulario.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // Recoger datos del formulario
     const nuevaPelicula = {
-        id: Date.now(), // Identificador único
+        id: Date.now(),
         titulo: document.querySelector("#titulo").value.trim(),
         año: document.querySelector("#año").value,
         poster: document.querySelector("#poster").value.trim(),
@@ -35,21 +30,17 @@ formulario.addEventListener("submit", (e) => {
         fechaCreacion: new Date().toISOString()
     };
 
-    // Validaciones
     if (!validarPelicula(nuevaPelicula)) {
         return;
     }
 
-    // Añadir al catálogo
     catalogoPeliculas.push(nuevaPelicula);
     guardarEnLocalStorage(catalogoPeliculas);
 
-    // Actualizar UI
     renderizarPelicula(nuevaPelicula);
     limpiarFormulario();
     seccionFormulario.hidden = true;
 
-    // Notificación
     mostrarNotificacion('Película añadida correctamente');
 });
 
@@ -107,7 +98,6 @@ function mostrarError(mensaje) {
 }
 
 function mostrarNotificacion(mensaje) {
-    // Implementar sistema de notificaciones
     console.log(mensaje);
 }
 
@@ -120,13 +110,12 @@ function isValidUrl(string) {
     }
 }
 
-// Cargar películas existentes al iniciar
 document.addEventListener("DOMContentLoaded", () => {
     catalogoPeliculas.forEach(pelicula => renderizarPelicula(pelicula));
 });
 
-// Exportar funciones necesarias para otros módulos
 export {
     catalogoPeliculas,
     renderizarPelicula
 };
+
