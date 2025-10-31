@@ -1,9 +1,9 @@
 function guardarEnLocalStorage(catalogo) {
-  localStorage.setItem("peliculas", JSON.stringify(catalogo));
+  localStorage.setItem("catalogoPeliculas", JSON.stringify(catalogo));
 }
 
 function cargarDeLocalStorage() {
-  return JSON.parse(localStorage.getItem("peliculas")) || [];
+  return JSON.parse(localStorage.getItem("catalogoPeliculas")) || [];
 }
 
 const lista = document.querySelector("#peliculas");
@@ -14,6 +14,11 @@ const cancelar = document.querySelector("#cancelarEdicion");
 let catalogo = [], editando = null;
 
 document.addEventListener("DOMContentLoaded", () => {
+  catalogo = cargarDeLocalStorage();
+  render();
+});
+
+document.addEventListener("peliculaActualizada", () => {
   catalogo = cargarDeLocalStorage();
   render();
 });

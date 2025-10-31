@@ -39,20 +39,21 @@ formulario.addEventListener("submit", (e) => {
   };
 
   guardarPelicula(pelicula);
-  mostrarPelicula(pelicula);
+  document.dispatchEvent(new CustomEvent("peliculaActualizada"));
 
   formulario.reset();
   seccionFormulario.hidden = true;
 });
 
 function guardarPelicula(pelicula) {
-  let peliculas = JSON.parse(localStorage.getItem("peliculas")) || [];
+  let peliculas = JSON.parse(localStorage.getItem("catalogoPeliculas")) || [];
   peliculas.push(pelicula);
-  localStorage.setItem("peliculas", JSON.stringify(peliculas));
+  localStorage.setItem("catalogoPeliculas", JSON.stringify(peliculas));
+  document.dispatchEvent(new CustomEvent("peliculaActualizada"));
 }
 
 function cargarPeliculas() {
-  let peliculas = JSON.parse(localStorage.getItem("peliculas")) || [];
+  let peliculas = JSON.parse(localStorage.getItem("catalogoPeliculas")) || [];
   peliculas.forEach(mostrarPelicula);
 }
 
