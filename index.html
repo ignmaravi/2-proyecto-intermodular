@@ -14,33 +14,34 @@
     
     
     <section id="seccion" hidden>
-    <h2>Nueva película</h2>
-        <form id="pelicula">
-        <label for="titulo">Título:</label>
-        <input type="text" id="titulo" name="titulo" required>
+  <h2>Nueva película</h2>
+  <form id="pelicula">
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" name="titulo" required>
 
-        <label for="director">Director o creador:</label>
-        <input type="text" id="director" name="director" required>
+    <label for="director">Director o creador:</label>
+    <input type="text" id="director" name="director" required>
 
-        <label for="año">Año:</label>
-        <input type="numero" id="año" name="año" min="1900" max="2100">
-        
-        <label for="genero">Género:</label>
-        <input type="text" id="genero" name="genero" required>
+    <label for="año">Año:</label>
+    <input type="number" id="año" name="año" min="1900" max="2100">
 
-        <label for="valoracion">Valoración:</label>
-        <select id="valoracion" name="valoracion" required>
-            <option value="1">⭐</option>
-            <option value="2">⭐⭐</option>
-            <option value="3">⭐⭐⭐</option>
-            <option value="4">⭐⭐⭐⭐</option>
-            <option value="5">⭐⭐⭐⭐⭐</option>
-        </select>
+    <label for="genero">Género:</label>
+    <input type="text" id="genero" name="genero" required>
 
-        <button type="guardar">Guardar</button>
-        <button type="botonGuardar" id="cancelar">Cancelar</button>
-        </form>
-    </section>
+    <label for="valoracion">Valoración:</label>
+    <select id="valoracion" name="valoracion" required>
+      <option value="1">⭐</option>
+      <option value="2">⭐⭐</option>
+      <option value="3">⭐⭐⭐</option>
+      <option value="4">⭐⭐⭐⭐</option>
+      <option value="5">⭐⭐⭐⭐⭐</option>
+    </select>
+
+    <button type="submit">Guardar</button>
+    <button type="button" id="cancelar">Cancelar</button>
+  </form>
+</section>
+
 
     <section id="editarSeccion" hidden>
         <h2>Editar película</h2>
@@ -71,7 +72,7 @@
         </form>
     </section>
 
-    <!-- Sección donde se mostrarán las películas -->
+
     <section id="ListaPeliculas">
         <h2>Películas añadidas</h2>
         <ul id="peliculas"></ul>
