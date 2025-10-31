@@ -4,22 +4,18 @@ const formulario = document.querySelector("#pelicula");
 const listaPeliculas = document.querySelector("#peliculas");
 const botonCancelar = document.querySelector("#cancelar");
 
-// Mostrar el formulario al pulsar "Añadir Película"
 botonAñadir.addEventListener("click", () => {
   seccionFormulario.hidden = false;
 });
 
-// Ocultar formulario y limpiar al pulsar "Cancelar"
 botonCancelar.addEventListener("click", (e) => {
   e.preventDefault();
   formulario.reset();
   seccionFormulario.hidden = true;
 });
 
-// Cargar películas guardadas al iniciar la página
 document.addEventListener("DOMContentLoaded", cargarPeliculas);
 
-// Guardar nueva película
 formulario.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -49,20 +45,17 @@ formulario.addEventListener("submit", (e) => {
   seccionFormulario.hidden = true;
 });
 
-// Guardar película en localStorage
 function guardarPelicula(pelicula) {
   let peliculas = JSON.parse(localStorage.getItem("peliculas")) || [];
   peliculas.push(pelicula);
   localStorage.setItem("peliculas", JSON.stringify(peliculas));
 }
 
-// Cargar películas guardadas
 function cargarPeliculas() {
   let peliculas = JSON.parse(localStorage.getItem("peliculas")) || [];
   peliculas.forEach(mostrarPelicula);
 }
 
-// Mostrar una película en la lista
 function mostrarPelicula(pelicula) {
   const li = document.createElement("li");
   li.innerHTML = `
