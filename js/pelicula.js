@@ -23,9 +23,23 @@ document.addEventListener("peliculaActualizada", () => {
   render();
 });
 
+let filtros = { texto: "", genero: "", valoracion: "" };
+document.addEventListener("filtrosActualizados", (e) => {
+  filtros = e.detail;
+  render();
+});
+
 function render() {
   lista.innerHTML = "";
-  catalogo.forEach(p => {
+  const filtradas = catalogo.filter(p => {
+    const coincideTexto =
+      p.titulo.toLowerCase().includes(filtros.texto) ||
+      p.director.toLowerCase().includes(filtros.texto);
+    const coincideGenero = !filtros.genero || p.genero === filtros.genero;
+    const coincideValor = !filtros.valoracion || p.valoracion === filtros.valoracion;
+    return coincideTexto && coincideGenero && coincideValor;
+  });
+  filtradas.forEach(p => {
     const li = document.createElement("li");
     li.innerHTML = `
       <h3>${p.titulo} (${p.año || "?"})</h3>
