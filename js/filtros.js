@@ -1,6 +1,7 @@
 const inputBusqueda = document.querySelector("#busqueda");
 const filtroGenero = document.querySelector("#filtroGenero");
 const filtroValoracion = document.querySelector("#filtroValoracion");
+const btnQuitarFiltros = document.querySelector("#btnQuitarFiltros");
 
 let filtrosActivos = {
   texto: "",
@@ -21,4 +22,16 @@ filtroGenero.addEventListener("change", () => {
 filtroValoracion.addEventListener("change", () => {
   filtrosActivos.valoracion = filtroValoracion.value;
   document.dispatchEvent(new CustomEvent("filtrosActualizados", { detail: filtrosActivos }));
+});
+
+btnQuitarFiltros.addEventListener("click", () => {
+  inputBusqueda.value = "";
+  filtroGenero.value = "";
+  filtroValoracion.value = "";
+  filtrosActivos = {
+    texto: "",
+    genero: "",
+    valoracion: ""
+  };
+   document.dispatchEvent(new CustomEvent("filtrosActualizados", { detail: filtrosActivos }));
 });

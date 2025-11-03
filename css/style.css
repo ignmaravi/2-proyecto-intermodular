@@ -8,7 +8,6 @@
   --gap: 16px;
 }
 
-/* Reset básico */
 * {
   box-sizing: border-box;
 }
@@ -27,7 +26,6 @@ h1 {
   margin-bottom: 16px;
 }
 
-/* Botón principal */
 .AñadirBoton {
   display: block;
   margin: 0 auto 16px;
@@ -40,7 +38,6 @@ h1 {
   font-weight: 600;
 }
 
-/* Sección - formulario */
 #seccion {
   max-width: 700px;
   margin: 0 auto 20px;
@@ -66,14 +63,13 @@ h1 {
   color: var(--muted);
 }
 
-/* Inputs, textarea y select: fondo opaco para legibilidad */
 #pelicula input,
 #pelicula textarea,
 #pelicula select {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  background: #111; /* fondo oscuro, opaco */
+  background: #111;
   color: var(--text);
   font-size: 1rem;
 }
@@ -107,7 +103,6 @@ h1 {
   color: #fff;
 }
 
-/* Forzar que la sección aparezca legible cuando no está oculta */
 #seccion[hidden] {
   display: none;
 }
@@ -117,7 +112,6 @@ h1 {
   opacity: 1;
 }
 
-/* Lista de películas */
 #ListaPeliculas {
   max-width: 1100px;
   margin: 0 auto;
@@ -153,7 +147,6 @@ h1 {
   font-size: 1rem;
 }
 
-/* Asegurar legibilidad de <li> simples generados por JS */
 #peliculas li {
   background: var(--card);
   padding: 12px;
@@ -172,7 +165,6 @@ h1 {
   margin: 0 0 6px 0;
 }
 
-/* Botones que usan los scripts */
 .editar {
   background: #3f51b5;
   color: #fff;
@@ -199,7 +191,6 @@ h1 {
   margin-top: 8px;
 }
 
-/* Edición / formularios secundarios */
 #editarSeccion,
 #editarSeccion[hidden] {
   max-width: 700px;
@@ -223,7 +214,6 @@ h1 {
   border: none;
 }
 
-/* Filtros (opcionales) */
 .filters {
   display: flex;
   gap: 8px;
@@ -237,11 +227,10 @@ h1 {
   padding: 8px;
   border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.06);
-  background: #111; /* fondo sólido para legibilidad */
+  background: #111;
   color: var(--text);
 }
 
-/* Responsive */
 @media (max-width: 600px) {
   #peliculas {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -252,7 +241,6 @@ h1 {
   }
 }
 
-/* utilidades */
 .muted {
   color: var(--muted);
 }
