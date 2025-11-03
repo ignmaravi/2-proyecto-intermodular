@@ -1,5 +1,3 @@
-/* CSS simple y compatible con index.html y los scripts JS */
-
 :root {
   --bg: #0f0f10;
   --card: #1f1f21;
@@ -10,54 +8,255 @@
   --gap: 16px;
 }
 
-/* reset básico */
-* { box-sizing: border-box; }
-body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--text); padding: 20px; }
+/* Reset básico */
+* {
+  box-sizing: border-box;
+}
 
-h1 { text-align: center; margin-bottom: 16px; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 20px;
+  font-size: 16px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 16px;
+}
 
 /* Botón principal */
-.AñadirBoton { display: block; margin: 0 auto 16px; padding: 10px 16px; background: var(--accent); color: #fff; border: none; border-radius: 999px; cursor: pointer; }
+.AñadirBoton {
+  display: block;
+  margin: 0 auto 16px;
+  padding: 10px 16px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+}
 
-/* Formulario principal */
-#seccion { max-width: 700px; margin: 0 auto 20px; background: var(--card); padding: 16px; border-radius: var(--radius); }
-#seccion h2 { margin: 0 0 12px 0; }
-#pelicula { display: flex; flex-direction: column; gap: 10px; }
-#pelicula label { font-size: 0.95rem; color: var(--muted); }
-#pelicula input, #pelicula textarea, #pelicula select { padding: 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06); background: transparent; color: var(--text); }
-#pelicula textarea { min-height: 80px; }
-#pelicula .actions { display:flex; gap: 8px; }
-#pelicula button { padding: 8px 12px; border-radius: 6px; border: none; cursor: pointer; }
-#pelicula button[type="guardar"], #pelicula button[type="submit"] { background: var(--accent); color: #fff; }
-#cancelar { background: #333; color: #fff; }
+/* Sección - formulario */
+#seccion {
+  max-width: 700px;
+  margin: 0 auto 20px;
+  background: var(--card);
+  padding: 18px;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+}
+
+#seccion h2 {
+  margin: 0 0 12px 0;
+  font-size: 1.1rem;
+}
+
+#pelicula {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#pelicula label {
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+/* Inputs, textarea y select: fondo opaco para legibilidad */
+#pelicula input,
+#pelicula textarea,
+#pelicula select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #111; /* fondo oscuro, opaco */
+  color: var(--text);
+  font-size: 1rem;
+}
+
+#pelicula textarea {
+  min-height: 100px;
+}
+
+#pelicula .actions {
+  display: flex;
+  gap: 8px;
+}
+
+#pelicula button {
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.98rem;
+}
+
+#pelicula button[type="guardar"],
+#pelicula button[type="submit"] {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+
+#cancelar {
+  background: #333;
+  color: #fff;
+}
+
+/* Forzar que la sección aparezca legible cuando no está oculta */
+#seccion[hidden] {
+  display: none;
+}
+
+#seccion:not([hidden]) {
+  display: block;
+  opacity: 1;
+}
 
 /* Lista de películas */
-#ListaPeliculas { max-width: 1100px; margin: 0 auto; }
-#peliculas { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
-.pelicula-item { background: var(--card); padding: 12px; border-radius: 8px; display: flex; flex-direction: column; gap: 8px; }
-.pelicula-item h3 { margin: 0; font-size: 1.05rem; }
-.pelicula-item p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+#ListaPeliculas {
+  max-width: 1100px;
+  margin: 0 auto;
+}
 
-/* Botones usados por los scripts */
-.editar { background: #3f51b5; color: #fff; padding: 8px; border-radius: 6px; border: none; cursor: pointer; }
-.borrar { background: #d32f2f; color: #fff; padding: 8px; border-radius: 6px; border: none; cursor: pointer; }
-.acciones-flex { display: flex; gap: 8px; margin-top: 8px; }
+#peliculas {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
 
-/* Sección de edición (si existe) */
-#editarSeccion, #editarSeccion[hidden] { max-width: 700px; margin: 12px auto; }
-#editarForm { display: flex; flex-direction: column; gap: 8px; background: var(--card); padding: 12px; border-radius: 8px; }
-#cancelarEdicion { background: #333; color: #fff; padding: 8px; border-radius: 6px; border: none; }
+.pelicula-item {
+  background: var(--card);
+  padding: 14px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.pelicula-item h3 {
+  margin: 0;
+  font-size: 1.08rem;
+  color: var(--text);
+}
+
+.pelicula-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* Asegurar legibilidad de <li> simples generados por JS */
+#peliculas li {
+  background: var(--card);
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--text);
+}
+
+#peliculas li h3 {
+  color: var(--text);
+  margin: 0 0 6px 0;
+}
+
+#peliculas li p {
+  color: var(--muted);
+  margin: 0 0 6px 0;
+}
+
+/* Botones que usan los scripts */
+.editar {
+  background: #3f51b5;
+  color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.borrar {
+  background: #d32f2f;
+  color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.acciones-flex {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Edición / formularios secundarios */
+#editarSeccion,
+#editarSeccion[hidden] {
+  max-width: 700px;
+  margin: 12px auto;
+}
+
+#editarForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--card);
+  padding: 12px;
+  border-radius: 8px;
+}
+
+#cancelarEdicion {
+  background: #333;
+  color: #fff;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+}
 
 /* Filtros (opcionales) */
-.filters { display: flex; gap: 8px; justify-content: center; margin-bottom: 12px; }
-#busqueda, #filtroGenero, #filtroValoracion { padding: 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06); background: transparent; color: var(--text); }
+.filters {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+#busqueda,
+#filtroGenero,
+#filtroValoracion {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #111; /* fondo sólido para legibilidad */
+  color: var(--text);
+}
 
 /* Responsive */
 @media (max-width: 600px) {
-  #peliculas { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-  #seccion { padding: 12px; }
+  #peliculas {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+
+  #seccion {
+    padding: 12px;
+  }
 }
 
 /* utilidades */
-.muted { color: var(--muted); }
-.small { font-size: 0.85rem; }
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 0.85rem;
+}
