@@ -26,7 +26,13 @@
     <input type="number" id="año" name="año" min="1900" max="2100">
 
     <label for="genero">Género:</label>
-    <input type="text" id="genero" name="genero" required>
+    <select id="genero" name="genero" required>
+        <option value="Acción">Acción</option>
+        <option value="Comedia">Comedia</option>
+        <option value="Drama">Drama</option>
+        <option value="Terror">Terror</option>
+        <option value="Ciencia ficción">Ciencia ficción</option>
+    </select>
 
     <label for="valoracion">Valoración:</label>
     <select id="valoracion" name="valoracion" required>
@@ -56,7 +62,13 @@
         <input type="number" id="editarAño" name="editarAño" min="1900" max="2100">
 
         <label for="editarGenero">Género:</label>
-        <input type="text" id="editarGenero" name="editarGenero">
+        <select id="editarGenero" name="editarGenero" required>
+            <option value="Acción">Acción</option>
+            <option value="Comedia">Comedia</option>
+            <option value="Drama">Drama</option>
+            <option value="Terror">Terror</option>
+            <option value="Ciencia ficción">Ciencia ficción</option>
+        </select>
 
         <label for="editarValoracion">Valoración:</label>
         <select id="editarValoracion" name="editarValoracion">
