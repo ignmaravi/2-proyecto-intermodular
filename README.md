@@ -32,27 +32,18 @@ El objetivo es practicar la colaboración en equipo utilizando **GitHub** y desa
 
 | Funcionalidad | Estado |
 |----------------|---------|
-| Añadir película/serie al catálogo mediante un formulario | ✅ |
-| Ver catálogo completo con todas las películas/series en tarjetas visuales | ☐ |
-| Buscar por título con filtrado en tiempo real | ☐ |
-| Filtrar por género | ☐ |
-| Filtrar por director/creador | ☐ |
-| Eliminar película/serie del catálogo | ☐ |
-| Editar datos de una película/serie existente | ☐ |
-| Ver mejor valoradas (ordenadas por valoración con estrellas visuales) | ☐ |
-| Guardar automáticamente todos los datos en localStorage | ☐ |
-| Cargar automáticamente los datos al abrir la página | ☐ |
+| Formulario para crear y ordenar una serie/pelicula | ✅ |
+| Ver catálogo completo con todas las películas/series | ✅ |
+| Buscar por título con filtrado en tiempo real | ✅ |
+| Filtrar por género | ✅ |
+| Filtrar por director/creador | ✅ |
+| Eliminar película/serie del catálogo | ✅ |
+| Editar datos de las película/serie existente | ✅ |
+| Ver mejor valoradas (ordenadas por valoración con estrellas visuales) | ✅ |
+| Guardar automáticamente todos los datos en localStorage | ✅ |
+| Cargar automáticamente los datos al abrir la página | ✅ |
 
 ---
 
 ## Estructura del proyecto
 
-├── index.html
-├── css/
-│ └── style.css
-├── js/
-│ ├── pelicula.js
-│ ├── formulario.js
-│ ├── filtros.js
-│ └── storage.js
-└── README.md
