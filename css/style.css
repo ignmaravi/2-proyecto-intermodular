@@ -1,363 +1,262 @@
 :root {
-    --color-primary: #e50914;
-    --color-secondary: #564d4d;
-    --color-background: #1a1a1a;
-    --color-card-bg: #2a2a2a;
-    --color-text-light: #ffffff;
-    --color-text-muted: #999999;
-    --spacing-unit: 20px;
-    --border-radius: 10px;
-    --transition-speed: 0.3s;
+  --bg: #0f0f10;
+  --card: #1f1f21;
+  --accent: #e50914;
+  --text: #ffffff;
+  --muted: #9aa0a6;
+  --radius: 8px;
+  --gap: 16px;
 }
 
+/* Reset básico */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: var(--color-background);
-    color: var(--color-text-light);
-    line-height: 1.6;
-    padding: var(--spacing-unit);
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 20px;
+  font-size: 16px;
 }
 
-h1, h2 {
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-unit);
-    text-align: center;
+h1 {
+  text-align: center;
+  margin-bottom: 16px;
 }
 
-/* ---------------------------------------------------- */
-/* 1. BOTONES Y ESTILOS GLOBALES */
-/* ---------------------------------------------------- */
-
-button {
-    padding: 0.6rem 1.2rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-    margin: 0.5rem 0.25rem;
+/* Botón principal */
+.AñadirBoton {
+  display: block;
+  margin: 0 auto 16px;
+  padding: 10px 16px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
 }
 
-@keyframes pulseGlow {
-    0% {
-        box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(229, 9, 20, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(229, 9, 20, 0);
-    }
-}
-
-/* Botón principal (Añadir Película) */
-.AñadirBoton, button[type="guardar"] {
-    background: linear-gradient(45deg, var(--color-primary), #ff4b2b);
-    color: var(--color-text-light);
-    display: block;
-    width: 100%;
-    max-width: 300px;
-    margin: 1.5rem auto;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: var(--border-radius);
-    transition: all var(--transition-speed) ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.AñadirBoton::before, button[type="guardar"]::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-}
-
-.AñadirBoton:hover, button[type="guardar"]:hover {
-    transform: translateY(-3px) scale(1.02);
-    animation: pulseGlow 1.5s infinite;
-}
-
-.AñadirBoton:hover::before, button[type="guardar"]:hover::before {
-    transform: translateX(100%);
-}
-
-/* Botón secundario (Cancelar/Otros) */
-#cancelar {
-    background-color: var(--color-card-bg);
-    color: var(--color-text-light);
-    border: 1px solid var(--color-text-muted);
-}
-
-#cancelar:hover {
-    background-color: #333;
-}
-
-/* ---------------------------------------------------- */
-/* 2. FORMULARIO (SECCIÓN) */
-/* ---------------------------------------------------- */
-
+/* Sección - formulario */
 #seccion {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background-color: var(--color-card-bg);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    /* Nota: 'hidden' en el HTML oculta la sección por defecto. */
+  max-width: 700px;
+  margin: 0 auto 20px;
+  background: var(--card);
+  padding: 18px;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+}
+
+#seccion h2 {
+  margin: 0 0 12px 0;
+  font-size: 1.1rem;
 }
 
 #pelicula {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 #pelicula label {
-    font-weight: bold;
-    color: var(--color-text-light);
-    margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--muted);
 }
 
-#pelicula input[type="text"],
-#pelicula input[type="number"],
-#pelicula input[type="url"],
-#pelicula textarea {
-    padding: 1rem;
-    border: 2px solid transparent;
-    border-radius: var(--border-radius);
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--color-text-light);
-    width: 100%;
-    font-size: 1rem;
-    transition: all var(--transition-speed) ease;
-    backdrop-filter: blur(5px);
-}
-
-#pelicula input::placeholder,
-#pelicula textarea::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-#pelicula input:focus,
-#pelicula textarea:focus {
-    border-color: var(--color-primary);
-    outline: none;
-    background-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
-    transform: translateY(-2px);
+/* Inputs, textarea y select: fondo opaco para legibilidad */
+#pelicula input,
+#pelicula textarea,
+#pelicula select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #111; /* fondo oscuro, opaco */
+  color: var(--text);
+  font-size: 1rem;
 }
 
 #pelicula textarea {
-    resize: vertical;
+  min-height: 100px;
 }
 
-/* ---------------------------------------------------- */
-/* 3. LISTA DE PELÍCULAS (LISTAPELICULAS) */
-/* ---------------------------------------------------- */
+#pelicula .actions {
+  display: flex;
+  gap: 8px;
+}
 
+#pelicula button {
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.98rem;
+}
+
+#pelicula button[type="guardar"],
+#pelicula button[type="submit"] {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+
+#cancelar {
+  background: #333;
+  color: #fff;
+}
+
+/* Forzar que la sección aparezca legible cuando no está oculta */
+#seccion[hidden] {
+  display: none;
+}
+
+#seccion:not([hidden]) {
+  display: block;
+  opacity: 1;
+}
+
+/* Lista de películas */
 #ListaPeliculas {
-    padding: 1rem 0;
-    max-width: 1200px;
-    margin: 2rem auto;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 #peliculas {
-    list-style: none;
-    display: grid;
-    /* Grid es ideal para el diseño de tarjetas */
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-    padding: 0;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
 }
 
-/* Estilos de cada elemento de la lista (Tarjeta de Película) */
 .pelicula-item {
-    background-color: var(--color-card-bg);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
-    transition: all var(--transition-speed) ease;
-    position: relative;
+  background: var(--card);
+  padding: 14px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.pelicula-item:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.9);
+.pelicula-item h3 {
+  margin: 0;
+  font-size: 1.08rem;
+  color: var(--text);
 }
 
-.pelicula-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--color-primary), #ff4b2b);
-    transform: scaleX(0);
-    transition: transform var(--transition-speed) ease;
+.pelicula-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
 }
 
-.pelicula-item:hover::before {
-    transform: scaleX(1);
-}
-
-.pelicula-content {
-    padding: 1rem;
-    flex-grow: 1; /* Permite que el contenido ocupe el espacio restante */
-}
-
-.pelicula-content h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-    color: var(--color-text-light);
-    text-align: left;
-}
-
-.pelicula-content p {
-    color: var(--color-text-muted);
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-}
-
-/* Estilo para la valoración visual (si se inyectan estrellas) */
-.valoracion { 
-    color: var(--color-secondary);
-    font-size: 1.2rem;
-    margin-top: 0.5rem;
-}
-
-/* Contenedor de botones de acción por tarjeta */
-.card-actions {
-    display: flex;
-    justify-content: space-around;
-    padding: 0.5rem 1rem 1rem;
-    border-top: 1px solid #333;
-}
-
-/* Botones de acción dentro de la tarjeta (Editar/Eliminar) */
-.card-actions button {
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
-    margin: 0;
-    width: 48%; /* Para que ocupen casi todo el ancho */
-}
-
-.card-actions button:first-child {
-    background-color: #3f51b5; /* Azul para Editar */
-}
-
-.card-actions button:last-child {
-    background-color: #d32f2f; /* Rojo oscuro para Eliminar */
-}
-
-.card-actions button:first-child:hover {
-    background-color: #536dfe;
-}
-
-.card-actions button:last-child:hover {
-    background-color: #e53935;
-}
-
-/* ---------------------------------------------------- */
-/* 4. RESPONSIVE DESIGN (MÓVIL PRIMERO) */
-/* ---------------------------------------------------- */
-
-/* Ajustes para tablet y escritorio pequeños */
-@media (min-width: 600px) {
-    body {
-        padding: 2rem;
-    }
-
-    h1 {
-        font-size: 2.5rem;
-    }
-    
-    .AñadirBoton {
-        max-width: 400px;
-    }
-
-    /* En el formulario, los botones pueden ir en fila */
-    #pelicula button {
-        width: auto;
-        flex-grow: 1;
-    }
-
-    #pelicula .form-actions { /* Asumiendo un contenedor para los botones Guardar/Cancelar */
-        display: flex;
-        justify-content: flex-end;
-        gap: 1rem;
-    }
-}
-
-/* Ajustes para escritorio */
-@media (min-width: 1024px) {
-    #ListaPeliculas {
-        padding: 1rem 4rem;
-    }
-}
-
-/* Compatibilidad: estilos para elementos simples creados por los scripts */
+/* Asegurar legibilidad de <li> simples generados por JS */
 #peliculas li {
-    list-style: none;
+  background: var(--card);
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--text);
 }
 
-/* Sección de edición que usan algunos scripts */
-#editarSeccion, #editarSeccion[hidden] {
-    max-width: 700px;
-    margin: 1.5rem auto;
+#peliculas li h3 {
+  color: var(--text);
+  margin: 0 0 6px 0;
+}
+
+#peliculas li p {
+  color: var(--muted);
+  margin: 0 0 6px 0;
+}
+
+/* Botones que usan los scripts */
+.editar {
+  background: #3f51b5;
+  color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.borrar {
+  background: #d32f2f;
+  color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.acciones-flex {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Edición / formularios secundarios */
+#editarSeccion,
+#editarSeccion[hidden] {
+  max-width: 700px;
+  margin: 12px auto;
 }
 
 #editarForm {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-    padding: 1rem;
-    border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--card);
+  padding: 12px;
+  border-radius: 8px;
 }
 
 #cancelarEdicion {
-    background-color: var(--color-card-bg);
-    color: var(--color-text-light);
-    border: 1px solid #444;
+  background: #333;
+  color: #fff;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
 }
 
-/* Contenedor de filtros/búsqueda — opcional si se añade al HTML */
+/* Filtros (opcionales) */
 .filters {
-    max-width: 1200px;
-    margin: 0 auto 1rem;
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 12px;
 }
 
-#busqueda, #filtroGenero, #filtroValoracion {
-    padding: 0.6rem 0.8rem;
-    border-radius: 8px;
-    background: rgba(255,255,255,0.06);
-    color: var(--color-text-light);
-    border: 1px solid transparent;
+#busqueda,
+#filtroGenero,
+#filtroValoracion {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #111; /* fondo sólido para legibilidad */
+  color: var(--text);
 }
 
-#busqueda:focus, #filtroGenero:focus, #filtroValoracion:focus {
-    border-color: var(--color-primary);
-    outline: none;
+/* Responsive */
+@media (max-width: 600px) {
+  #peliculas {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+
+  #seccion {
+    padding: 12px;
+  }
+}
+
+/* utilidades */
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 0.85rem;
 }
