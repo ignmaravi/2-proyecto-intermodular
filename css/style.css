@@ -30,10 +30,6 @@ h1, h2 {
     text-align: center;
 }
 
-/* ---------------------------------------------------- */
-/* 1. BOTONES Y ESTILOS GLOBALES */
-/* ---------------------------------------------------- */
-
 button {
     padding: 0.6rem 1.2rem;
     border: none;
@@ -56,7 +52,6 @@ button {
     }
 }
 
-/* Botón principal (Añadir Película) */
 .AñadirBoton, button[type="guardar"] {
     background: linear-gradient(45deg, var(--color-primary), #ff4b2b);
     color: var(--color-text-light);
@@ -96,9 +91,8 @@ button {
     transform: translateX(100%);
 }
 
-/* Botón secundario (Cancelar/Otros) */
 #cancelar {
-    background-color: var(--color-card-bg);
+    background-color: var(--colorcss-card-bg);
     color: var(--color-text-light);
     border: 1px solid var(--color-text-muted);
 }
@@ -107,10 +101,6 @@ button {
     background-color: #333;
 }
 
-/* ---------------------------------------------------- */
-/* 2. FORMULARIO (SECCIÓN) */
-/* ---------------------------------------------------- */
-
 #seccion {
     max-width: 600px;
     margin: 2rem auto;
@@ -118,7 +108,6 @@ button {
     background-color: var(--color-card-bg);
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    /* Nota: 'hidden' en el HTML oculta la sección por defecto. */
 }
 
 #pelicula {
@@ -166,10 +155,6 @@ button {
     resize: vertical;
 }
 
-/* ---------------------------------------------------- */
-/* 3. LISTA DE PELÍCULAS (LISTAPELICULAS) */
-/* ---------------------------------------------------- */
-
 #ListaPeliculas {
     padding: 1rem 0;
     max-width: 1200px;
@@ -179,13 +164,11 @@ button {
 #peliculas {
     list-style: none;
     display: grid;
-    /* Grid es ideal para el diseño de tarjetas */
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1.5rem;
     padding: 0;
 }
 
-/* Estilos de cada elemento de la lista (Tarjeta de Película) */
 .pelicula-item {
     background-color: var(--color-card-bg);
     border-radius: var(--border-radius);
@@ -220,7 +203,7 @@ button {
 
 .pelicula-content {
     padding: 1rem;
-    flex-grow: 1; /* Permite que el contenido ocupe el espacio restante */
+    flex-grow: 1;
 }
 
 .pelicula-content h3 {
@@ -236,14 +219,12 @@ button {
     margin-bottom: 0.5rem;
 }
 
-/* Estilo para la valoración visual (si se inyectan estrellas) */
 .valoracion { 
     color: var(--color-secondary);
     font-size: 1.2rem;
     margin-top: 0.5rem;
 }
 
-/* Contenedor de botones de acción por tarjeta */
 .card-actions {
     display: flex;
     justify-content: space-around;
@@ -251,20 +232,19 @@ button {
     border-top: 1px solid #333;
 }
 
-/* Botones de acción dentro de la tarjeta (Editar/Eliminar) */
 .card-actions button {
     padding: 0.5rem 1rem;
     font-size: 0.85rem;
     margin: 0;
-    width: 48%; /* Para que ocupen casi todo el ancho */
+    width: 48%;
 }
 
 .card-actions button:first-child {
-    background-color: #3f51b5; /* Azul para Editar */
+    background-color: #3f51b5;
 }
 
 .card-actions button:last-child {
-    background-color: #d32f2f; /* Rojo oscuro para Eliminar */
+    background-color: #d32f2f;
 }
 
 .card-actions button:first-child:hover {
@@ -275,11 +255,6 @@ button {
     background-color: #e53935;
 }
 
-/* ---------------------------------------------------- */
-/* 4. RESPONSIVE DESIGN (MÓVIL PRIMERO) */
-/* ---------------------------------------------------- */
-
-/* Ajustes para tablet y escritorio pequeños */
 @media (min-width: 600px) {
     body {
         padding: 2rem;
@@ -293,22 +268,21 @@ button {
         max-width: 400px;
     }
 
-    /* En el formulario, los botones pueden ir en fila */
     #pelicula button {
         width: auto;
         flex-grow: 1;
     }
 
-    #pelicula .form-actions { /* Asumiendo un contenedor para los botones Guardar/Cancelar */
+    #pelicula .form-actions {
         display: flex;
         justify-content: flex-end;
         gap: 1rem;
     }
 }
 
-/* Ajustes para escritorio */
 @media (min-width: 1024px) {
     #ListaPeliculas {
         padding: 1rem 4rem;
     }
 }
+

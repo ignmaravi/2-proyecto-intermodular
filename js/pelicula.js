@@ -1,77 +1,96 @@
-// Seleccionamos los elementos del DOM
-const botonAñadir = document.querySelector(".AñadirBoton");
-const seccionFormulario = document.querySelector("#seccion");
-const formulario = document.querySelector("#pelicula");
-const listaPeliculas = document.querySelector("#peliculas");
-const botonCancelar = document.querySelector("#cancelar");
-
-// Mostrar el formulario al hacer clic en "Añadir Película"
-botonAñadir.addEventListener("click", () => {
-    seccionFormulario.hidden = false;
-});
-
-// Ocultar el formulario al cancelar
-botonCancelar.addEventListener("click", (e) => {
-    e.preventDefault();
-    formulario.reset();
-    seccionFormulario.hidden = true;
-});
-
-// Cargar películas guardadas al iniciar
-document.addEventListener("DOMContentLoaded", cargarPeliculas);
-
-// Manejar el envío del formulario
-formulario.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const titulo = document.querySelector("#titulo").value.trim();
-    const año = document.querySelector("#año").value.trim();
-    const poster = document.querySelector("#poster").value.trim();
-    const synopsis = document.querySelector("#synopsis").value.trim();
-
-    if (!titulo) {
-        alert("Por favor, introduce un título.");
-        return;
-    }
-
-    // Crear objeto película
-    const pelicula = {
-        titulo,
-        año,
-        poster,
-        synopsis
-    };
-
-    // Guardar y mostrar la película
-    guardarPelicula(pelicula);
-    mostrarPelicula(pelicula);
-
-    // Limpiar formulario
-    formulario.reset();
-    seccionFormulario.hidden = true;
-});
-
-// Guardar películas en localStorage
-function guardarPelicula(pelicula) {
-    let peliculas = JSON.parse(localStorage.getItem("peliculas")) || [];
-    peliculas.push(pelicula);
-    localStorage.setItem("peliculas", JSON.stringify(peliculas));
+function guardarEnLocalStorage(catalogo) {
+  localStorage.setItem("catalogoPeliculas", JSON.stringify(catalogo));
 }
 
-// Mostrar todas las películas guardadas
-function cargarPeliculas() {
-    let peliculas = JSON.parse(localStorage.getItem("peliculas")) || [];
-    peliculas.forEach(mostrarPelicula);
+function cargarDeLocalStorage() {
+  return JSON.parse(localStorage.getItem("catalogoPeliculas")) || [];
 }
 
-// Mostrar una película en el DOM
-function mostrarPelicula(pelicula) {
+const lista = document.querySelector("#peliculas");
+const editarSeccion = document.querySelector("#editarSeccion");
+const form = document.querySelector("#editarForm");
+const cancelar = document.querySelector("#cancelarEdicion");
+
+let catalogo = [], editando = null;
+
+document.addEventListener("DOMContentLoaded", () => {
+  catalogo = cargarDeLocalStorage();
+  render();
+});
+
+document.addEventListener("peliculaActualizada", () => {
+  catalogo = cargarDeLocalStorage();
+  render();
+});
+
+let filtros = { texto: "", genero: "", valoracion: "" };
+document.addEventListener("filtrosActualizados", (e) => {
+  filtros = e.detail;
+  render();
+});
+
+function render() {
+  lista.innerHTML = "";
+  const filtradas = catalogo.filter(p => {
+    const coincideTexto =
+      p.titulo.toLowerCase().includes(filtros.texto) ||
+      p.director.toLowerCase().includes(filtros.texto);
+    const coincideGenero = !filtros.genero || p.genero === filtros.genero;
+    const coincideValor = !filtros.valoracion || p.valoracion === filtros.valoracion;
+    return coincideTexto && coincideGenero && coincideValor;
+  });
+  filtradas.forEach(p => {
     const li = document.createElement("li");
     li.innerHTML = `
-        <h3>${pelicula.titulo} (${pelicula.año || "Año desconocido"})</h3>
-        ${pelicula.poster ? `<img src="${pelicula.poster}" alt="${pelicula.titulo}" width="150">` : ""}
-        <p>${pelicula.synopsis || "Sin sinopsis"}</p>
-        <hr>
+      <h3>${p.titulo} (${p.año || "?"})</h3>
+      <p><b>Director:</b> ${p.director || "?"}</p>
+      <p><b>Género:</b> ${p.genero || "?"}</p>
+      <p><b>Valoración:</b> ${"⭐".repeat(p.valoracion || 0)}</p>
+      <button class="editar">Editar</button>
+      <button class="borrar">Borrar</button><hr>
     `;
-    listaPeliculas.appendChild(li);
+    li.querySelector(".editar").onclick = () => editar(p);
+    li.querySelector(".borrar").onclick = () => borrar(p.titulo);
+    lista.appendChild(li);
+  });
+}
+
+function editar(p) {
+  editando = p.titulo;
+  editarSeccion.hidden = false;
+  form.editarTitulo.value = p.titulo;
+  form.editarDirector.value = p.director;
+  form.editarAño.value = p.año;
+  form.editarGenero.value = p.genero;
+  form.editarValoracion.value = p.valoracion;
+}
+
+form.onsubmit = e => {
+  e.preventDefault();
+  const i = catalogo.findIndex(p => p.titulo === editando);
+  if (i !== -1) {
+    catalogo[i] = {
+      titulo: form.editarTitulo.value.trim(),
+      director: form.editarDirector.value.trim(),
+      año: form.editarAño.value.trim(),
+      genero: form.editarGenero.value.trim(),
+      valoracion: form.editarValoracion.value
+    };
+    guardarEnLocalStorage(catalogo);
+  }
+  editarSeccion.hidden = true;
+  form.reset();
+  render();
+};
+
+cancelar.onclick = e => {
+  e.preventDefault();
+  editarSeccion.hidden = true;
+  form.reset();
+};
+
+function borrar(titulo) {
+  catalogo = catalogo.filter(p => p.titulo !== titulo);
+  guardarEnLocalStorage(catalogo);
+  render();
 }

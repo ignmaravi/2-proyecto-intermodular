@@ -14,37 +14,93 @@
     
     
     <section id="seccion" hidden>
-    <h2>Nueva película</h2>
-        <form id="pelicula">
-        <label for="titulo">Título:</label>
-        <input type="text" id="titulo" name="titulo" required>
+  <h2>Nueva película</h2>
+  <form id="pelicula">
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" name="titulo" required>
 
-        <label for="año">Año:</label>
-        <input type="numero" id="año" name="año" min="1900" max="2100">
+    <label for="director">Director o creador:</label>
+    <input type="text" id="director" name="director" required>
 
-        <label for="poster">URL del póster:</label>
-        <input type="url" id="poster" name="poster" placeholder="https://...">
+    <label for="año">Año:</label>
+    <input type="number" id="año" name="año" min="1900" max="2100">
 
-        <label for="synopsis">Sinopsis:</label>
-        <textarea id="synopsis" name="synopsis" rows="3"></textarea>
+    <label for="genero">Género:</label>
+    <input type="text" id="genero" name="genero" required>
 
-        <button type="guardar">Guardar</button>
-        <button type="botonGuardar" id="cancelar">Cancelar</button>
+    <label for="valoracion">Valoración:</label>
+    <select id="valoracion" name="valoracion" required>
+      <option value="1">⭐</option>
+      <option value="2">⭐⭐</option>
+      <option value="3">⭐⭐⭐</option>
+      <option value="4">⭐⭐⭐⭐</option>
+      <option value="5">⭐⭐⭐⭐⭐</option>
+    </select>
+
+    <button type="submit">Guardar</button>
+    <button type="button" id="cancelar">Cancelar</button>
+  </form>
+</section>
+
+
+    <section id="editarSeccion" hidden>
+        <h2>Editar película</h2>
+        <form id="editarForm">
+        <label for="editarTitulo">Título:</label>
+        <input type="text" id="editarTitulo" name="editarTitulo" required>
+
+        <label for="editarDirector">Director o creador:</label>
+        <input type="text" id="editarDirector" name="editarDirector" required>
+
+        <label for="editarAño">Año de estreno:</label>
+        <input type="number" id="editarAño" name="editarAño" min="1900" max="2100">
+
+        <label for="editarGenero">Género:</label>
+        <input type="text" id="editarGenero" name="editarGenero">
+
+        <label for="editarValoracion">Valoración:</label>
+        <select id="editarValoracion" name="editarValoracion">
+            <option value="1">⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+        </select>
+
+        <button type="submit">Guardar cambios</button>
+        <button type="button" id="cancelarEdicion">Cancelar</button>
         </form>
     </section>
 
-    <!-- Sección donde se mostrarán las películas -->
+    <section id="filtros">
+    <input type="text" id="busqueda" placeholder="Buscar por título o director...">
+    <select id="filtroGenero">
+        <option value="">Todos los géneros</option>
+        <option value="Acción">Acción</option>
+        <option value="Comedia">Comedia</option>
+        <option value="Drama">Drama</option>
+        <option value="Terror">Terror</option>
+        <option value="Ciencia ficción">Ciencia ficción</option>
+    </select>
+    <select id="filtroValoracion">
+        <option value="">Todas las valoraciones</option>
+        <option value="5">⭐⭐⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="1">⭐</option>
+    </select>
+    </section>
+
     <section id="ListaPeliculas">
         <h2>Películas añadidas</h2>
         <ul id="peliculas"></ul>
     </section>
-
     
-
-  <script src="js/pelicula.js"></script>
+    <script src="js/formulario.js"></script>
+    <script src="js/filtros.js"></script>
+    <script src="js/pelicula.js"></script>
 
 </body>
 
 </html>
-
-
