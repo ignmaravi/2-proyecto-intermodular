@@ -94,3 +94,5 @@ function borrar(titulo) {
   guardarEnLocalStorage(catalogo);
   render();
 }
+
+
