@@ -10,6 +10,7 @@ const lista = document.querySelector("#peliculas");
 const editarSeccion = document.querySelector("#editarSeccion");
 const form = document.querySelector("#editarForm");
 const cancelar = document.querySelector("#cancelarEdicion");
+const contador = document.querySelector("#contadorPeliculas");
 
 let catalogo = [], editando = null;
 
@@ -53,6 +54,7 @@ function render() {
     li.querySelector(".borrar").onclick = () => borrar(p.titulo);
     lista.appendChild(li);
   });
+  contador.textContent = `(${catalogo.length})`;
 }
 
 function editar(p) {
