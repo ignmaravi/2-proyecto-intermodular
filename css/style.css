@@ -248,3 +248,22 @@ h1 {
 .small {
   font-size: 0.85rem;
 }
+
+#btnQuitarFiltros {
+  padding: 8px 16px;
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+}
+
+#btnQuitarFiltros:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+}
