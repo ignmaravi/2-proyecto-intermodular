@@ -47,3 +47,16 @@ El objetivo es practicar la colaboración en equipo utilizando **GitHub** y desa
 
 ## Estructura del proyecto
 
+```plaintext
+2-Proyecto-Intermodular/
+│
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   ├── pelicula.js
+│   ├── formulario.js
+│   ├── filtros.js
+│   └── storage.js
+│
+└── README.md
